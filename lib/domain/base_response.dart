@@ -11,7 +11,7 @@ class BaseResponse {
   @JsonKey(name: 'meta')
   final Meta? meta;
   @JsonKey(name: 'documents')
-  final ImageDocument? imageDocument;
+  final List<ImageDocument>? imageDocument;
 
   BaseResponse({this.meta, this.imageDocument});
 
@@ -19,4 +19,6 @@ class BaseResponse {
       _$BaseResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$BaseResponseToJson(this);
+
+
 }

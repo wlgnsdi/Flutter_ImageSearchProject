@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_search_project/page/home/home_viewmodel.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,10 +11,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePage extends State<HomePage> {
+  HomeViewModel viewModel = HomeViewModel();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text('Home Page'),
+      body: TextButton(onPressed: () async {
+        viewModel.searchImage();
+      }, child: Text('Image'),),
     );
   }
 }

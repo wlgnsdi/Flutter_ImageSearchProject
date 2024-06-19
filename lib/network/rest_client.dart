@@ -10,5 +10,5 @@ abstract class RestClient {
   factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
 
   @GET('/v2/search/image')
-  Future<BaseResponse> loadImages();
+  Future<BaseResponse> loadImages(@Query('query') String query);
 }

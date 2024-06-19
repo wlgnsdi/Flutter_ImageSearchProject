@@ -19,9 +19,9 @@ class _RestClient implements RestClient {
   String? baseUrl;
 
   @override
-  Future<BaseResponse> loadImages() async {
+  Future<BaseResponse> loadImages(String query) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'query': query};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio

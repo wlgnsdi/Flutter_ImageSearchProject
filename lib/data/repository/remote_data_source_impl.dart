@@ -8,8 +8,8 @@ class RemoteDataSourceImpl extends RemoteDataSource{
   RemoteDataSourceImpl({required this.restClient});
 
   @override
-  Future<BaseResponse> loadImages() {
-    return restClient.loadImages();
+  Future<BaseResponse> loadImages(String query) {
+    return restClient.loadImages(query);
   }
 
 }

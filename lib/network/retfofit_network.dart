@@ -19,6 +19,7 @@ class RetrofitNetwork {
 
   RestClient defaultUrl() {
     dio.options.headers["Authorization"] = dotenv.env['rest_key'];
+    // dio.interceptors.add(LogInterceptor(requestHeader: true, requestBody: true, responseBody: true));
     var client = RestClient(dio, baseUrl: dotenv.env['base_url'] ?? '');
     return client;
   }

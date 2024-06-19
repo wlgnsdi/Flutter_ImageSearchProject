@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:image_search_project/page/favorite/favorite_page.dart';
+import 'package:image_search_project/page/home/home_page.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: 'assets/config/.env');
@@ -41,13 +43,14 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(''),
-          ],
-        ),
+      body: Stack(
+        alignment: AlignmentDirectional.bottomCenter,
+        children: [
+          IndexedStack(
+            index: _currentIndex,
+            children: _pages,
+          )
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
@@ -68,4 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ]),
     );
   }
+
+  static final List<Widget> _pages = <Widget>[
+    HomePage(), FavoritePage()];
 }
