@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:image_search_project/page/favorite/favorite_page.dart';
 import 'package:image_search_project/page/home/home_page.dart';
+import 'package:image_search_project/shared_data.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: 'assets/config/.env');
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(create: (_) => SharedDataModel(), child: const MyApp()),
+    // ChangeNotifierProvider(
+    // create: (context) => SharedData(), child: const MyApp())
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -72,6 +78,5 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  static final List<Widget> _pages = <Widget>[
-    HomePage(), FavoritePage()];
+  static final List<Widget> _pages = <Widget>[HomePage(), FavoritePage()];
 }

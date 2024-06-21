@@ -6,6 +6,7 @@ part "image_document.g.dart";
 @JsonSerializable(
     genericArgumentFactories: true, fieldRename: FieldRename.snake)
 class ImageDocument {
+  int? id;
   @JsonKey(name: 'collection')
   final String? collection;
   @JsonKey(name: 'thumbnail_url')
@@ -22,22 +23,50 @@ class ImageDocument {
   final int? height;
   @JsonKey(name: 'datetime')
   final String? dateTime;
+  bool isFavorite = false;
 
   ImageDocument(
-      {this.collection,
+      {this.id,
+      this.collection,
       this.thumbnailUrl,
       this.imageUrl,
       this.displaySitename,
       this.docUrl,
       this.width,
       this.height,
-      this.dateTime});
+      this.dateTime,
+      this.isFavorite = false});
 
-  factory ImageDocument.fromJson(Map<String, dynamic> json) => _$ImageDocumentFromJson(json);
+  factory ImageDocument.fromJson(Map<String, dynamic> json) =>
+      _$ImageDocumentFromJson(json);
+
   Map<String, dynamic> toJson() => _$ImageDocumentToJson(this);
+
+  String getThumbnailImage() {
+    return thumbnailUrl ?? '';
+  }
+
+  String getOriginImage() {
+    return imageUrl ?? '';
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id':id,
+      'collection': collection,
+      'thumbnail_url': thumbnailUrl,
+      'image_url': imageUrl,
+      'display_sitename': displaySitename,
+      'doc_url': docUrl,
+      'width': width,
+      'height': height,
+      'favorite': isFavorite,
+      'datetime': dateTime,
+    };
+  }
 
   @override
   String toString() {
-    return 'DateTime : $dateTime, ImageUrl : $imageUrl';
+    return 'DateTime : $dateTime, ImageUrl : $imageUrl, IsFavorite : $isFavorite';
   }
 }

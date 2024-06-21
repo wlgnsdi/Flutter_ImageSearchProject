@@ -8,6 +8,7 @@ part of 'image_document.dart';
 
 ImageDocument _$ImageDocumentFromJson(Map<String, dynamic> json) =>
     ImageDocument(
+      id: (json['id'] as num?)?.toInt(),
       collection: json['collection'] as String?,
       thumbnailUrl: json['thumbnail_url'] as String?,
       imageUrl: json['image_url'] as String?,
@@ -16,10 +17,12 @@ ImageDocument _$ImageDocumentFromJson(Map<String, dynamic> json) =>
       width: (json['width'] as num?)?.toInt(),
       height: (json['height'] as num?)?.toInt(),
       dateTime: json['datetime'] as String?,
+      isFavorite: json['is_favorite'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$ImageDocumentToJson(ImageDocument instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'collection': instance.collection,
       'thumbnail_url': instance.thumbnailUrl,
       'image_url': instance.imageUrl,
@@ -28,4 +31,5 @@ Map<String, dynamic> _$ImageDocumentToJson(ImageDocument instance) =>
       'width': instance.width,
       'height': instance.height,
       'datetime': instance.dateTime,
+      'is_favorite': instance.isFavorite,
     };
