@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:image_search_project/domain/image_document.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -122,8 +121,6 @@ class DBHelper {
   }
 
   Future<void> updateImageDocument(ImageDocument data) async {
-    debugPrint('>>> updateImageDocument 11 ${data.toString()}');
-    debugPrint('>>> updateImageDocument 11 ${data.toMap()}');
     final db = await database;
     await db.update(
       searchDataTable,
@@ -132,9 +129,6 @@ class DBHelper {
       whereArgs: [data.id],
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
-
-    var value = await getImageDocument(data.id!);
-    debugPrint('>>> updateImageDocument 22 ${value.toString()}');
   }
 
   Future<void> deleteAllSearchData() async {

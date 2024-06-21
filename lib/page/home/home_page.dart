@@ -11,6 +11,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController textEditingController = TextEditingController();
     SharedDataModel sharedData = Provider.of<SharedDataModel>(context);
+
     return Scaffold(
       body: Column(
         children: [
@@ -29,14 +30,18 @@ class HomePage extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  hideKeyboard();
-                  sharedData.searchImage(textEditingController.text);
+                  if (textEditingController.text.trim().isNotEmpty) {
+                    hideKeyboard();
+                    sharedData.searchImage(textEditingController.text);
+                  }
                 },
-                child: Text('검색'),
+                child: const Text('검색'),
               )
             ],
           ),
-          const Expanded(child: HomePageListView())
+          sharedData.list.isNotEmpty
+              ? const Expanded(child: HomePageListView())
+              : const Expanded(child: Center(child: Text('검색하세요.')))
         ],
       ),
     );
