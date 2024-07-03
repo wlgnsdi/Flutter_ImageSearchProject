@@ -8,7 +8,7 @@ import 'package:image_search_project/shared_data.dart';
 import 'package:image_search_project/util/navigator_route_name.dart';
 import 'package:provider/provider.dart';
 
-// test
+// test 2
 Future<void> main() async {
   await dotenv.load(fileName: 'assets/config/.env');
 
